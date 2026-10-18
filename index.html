@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" class="booting">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#b48a62">
+<title>SkyGlass · AURA weather</title>
+<meta name="description" content="SkyGlass: a glass weather widget. Frosted glass over a golden-hour sky, rain running down the pane, fog you can wipe away.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/sky_sun.jpg">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<img class="sky-fallback" src="img/sky_sun.jpg" alt="" aria-hidden="true">
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<a class="skip" href="#hours">Skip to hourly forecast</a>
+
+<header class="top">
+  <a class="brand" href="./" aria-label="AURA weather, home">
+    <svg class="wx mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#wx-mark"/></svg>
+    <span class="word"><b>AURA</b> WEATHER</span>
+  </a>
+  <div class="tools" role="toolbar" aria-label="Glass controls">
+    <button class="tool" id="fogBtn" type="button" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h11M7 13h13M4 17h10" /><path d="M17 6.5a2.5 2.5 0 1 1 1.5 4.5H4" opacity=".0"/></svg>
+      <span>Fog</span>
+    </button>
+    <button class="tool" id="wipeBtn" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15c3-5 5 3 8-2s5 2 8-3"/></svg>
+      <span>Wipe</span>
+    </button>
+    <div class="unit" role="group" aria-label="Temperature unit">
+      <button type="button" data-unit="F" aria-pressed="true" aria-label="Fahrenheit">°F</button>
+      <button type="button" data-unit="C" aria-pressed="false" aria-label="Celsius">°C</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="widget" id="widget" aria-labelledby="w-city" data-fit>
+    <p class="city" id="w-city"><span class="name">NEO-PARIS</span> <time id="w-time">18:42</time></p>
+    <p class="cond" id="w-cond">Showers clearing</p>
+    <div class="w-icon" id="w-icon" aria-hidden="true"></div>
+    <div class="temp" aria-hidden="true"><span class="digits" id="digits"></span><span class="deg" id="w-unit">°F</span></div>
+    <p class="sr-only" id="w-temp-sr">72 degrees Fahrenheit</p>
+    <p class="hint" id="hint" aria-hidden="true">Wipe the glass</p>
+    <div class="strip" id="strip">
+      <div class="hours" id="hours" role="radiogroup" aria-label="Hourly forecast" tabindex="-1"></div>
+      <button class="handle" id="expandBtn" type="button" aria-expanded="false" aria-controls="hours">
+        <span class="sr-only">Show hourly details</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>SkyGlass widget · AURA weather</span>
+  <span>Sky photos: AI-generated (Google Gemini)</span>
+</footer>
+<div class="sr-only" id="live" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
